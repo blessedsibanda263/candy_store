@@ -1,17 +1,14 @@
-import 'package:candy_store/cart_button.dart';
+import 'package:candy_store/main_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MaterialApp(
+    title: 'Candy Store',
+    theme: ThemeData(
+      primarySwatch: Colors.lime,
+    ),
+    home: const MainPage(),
+  ));
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(body: Center(child: CartButton(count: 3))),
-    );
-  }
-}
