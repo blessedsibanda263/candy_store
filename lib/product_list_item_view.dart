@@ -1,3 +1,4 @@
+import 'package:candy_store/cart_provider.dart';
 import 'package:candy_store/product_details_page.dart';
 import 'package:candy_store/product_list_item.dart';
 import 'package:flutter/material.dart';
@@ -5,24 +6,15 @@ import 'package:flutter/material.dart';
 class ProductListItemView extends StatelessWidget {
   final ProductListItem item;
 
-  final Function(ProductListItem) onAddToCart;
-
-  const ProductListItemView({
-    super.key,
-    required this.item,
-    required this.onAddToCart,
-  });
+  const ProductListItemView({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
+    final cartNotifier = CartProvider.of(context);
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
-          MaterialPageRoute(
-            builder:
-                (_) =>
-                    ProductDetailsPage(product: item, onAddToCart: onAddToCart),
-          ),
+          MaterialPageRoute(builder: (_) => ProductDetailsPage(product: item)),
         );
       },
       child: Container(
@@ -75,7 +67,7 @@ class ProductListItemView extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 GestureDetector(
-                  onTap: () => onAddToCart(item),
+                  onTap: () => cartNotifier.addToCart(item),
                   child: Icon(
                     Icons.add,
                     size: 24,
