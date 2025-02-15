@@ -83,7 +83,7 @@ class _CartPageState extends State<CartPage> {
   void _calculateTotalPrice() {
     _totalPrice = _items.fold(0, (previousValue, element) =>
     previousValue +
-        element.product.price * element.quantity)
+        element.product.price * element.quantity);
   }
 
   void _removeFromCart(CartListItem item) {
